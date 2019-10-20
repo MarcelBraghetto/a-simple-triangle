@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style>
+            canvas.emscripten {
+                display:block;
+                border: 0px none;
+                background-color: #333333;
+            }
+
+            textarea.emscripten {
+                resize: none;
+                width: 600px;
+                height: 200px;
+                display:block;
+                border: 0px none;
+                padding: 8px;
+                background-color: #222222;
+                color: #ffffff;
+                margin: 0px;
+            }
+
+            .content {
+                border: 1px solid #333333;
+                display: inline-block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="content">
+            <canvas class="emscripten" id="canvas" width="600", height="360" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+            <textarea class="emscripten" id="output" rows="8"></textarea>
+        </div>
+
+        <script type='text/javascript'>
+            var Module = {
+                preRun: [],
+                postRun: [],
+                print: (function () {
+                    var element = document.getElementById('output');
+                    if (element) element.value = '';
+                    return function (text) {
+                        if (arguments.length > 1) {
+                            text = Array.prototype.slice.call(arguments).join(' ');
+                        }
+
+                        console.log(text);
+
+                        if (element) {
+                            element.value += text + "\n";
+                            element.scrollTop = element.scrollHeight;
+                        }
+                    };
+                })(),
+                printErr: function (text) {
+                    if (arguments.length > 1) {
+                        text = Array.prototype.slice.call(arguments).join(' ');
+                    }
+
+                    console.error(text);
+                },
+                canvas: (function () {
+                    return document.getElementById('canvas');
+                })()
+            };
+        </script>
+        <script async type="text/javascript" src="a-simple-triangle.js"></script>
+    </body>
+</html>

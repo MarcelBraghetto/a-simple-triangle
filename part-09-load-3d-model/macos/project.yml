@@ -1,0 +1,43 @@
+name: A Simple Triangle
+
+options:
+  bundleIdPrefix: io.github.marcelbraghetto
+  createIntermediateGroups: true
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+  deploymentTarget:
+    macOS: "10.12"
+
+settings:
+  CLANG_CXX_LANGUAGE_STANDARD: c++17
+  CLANG_CXX_LIBRARY: libc++
+  GCC_C_LANGUAGE_STANDARD: c11
+  CLANG_WARN_DOCUMENTATION_COMMENTS: false
+
+targets:
+  A Simple Triangle:
+    type: application
+    platform: macOS
+    info:
+      path: Generated/Info.plist
+    entitlements:
+      path: Generated/app.entitlements
+    sources:
+      - Source
+      - path: assets
+        type: folder
+        buildPhase: resources
+    settings:
+      HEADER_SEARCH_PATHS:
+        - $(PROJECT_DIR)/../../third-party/SDL/include
+        - $(PROJECT_DIR)/../../third-party/glm
+        - $(PROJECT_DIR)/../../third-party/tiny-obj-loader
+      LIBRARY_SEARCH_PATHS:
+        - $(inherited)
+        - $(PROJECT_DIR)
+        - $(PROJECT_DIR)/Frameworks
+    dependencies:
+      - framework: Frameworks/SDL2.framework
+        embed: true
+      - sdk: OpenGL.framework

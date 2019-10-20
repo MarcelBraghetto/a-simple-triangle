@@ -1,0 +1,57 @@
+name: A Simple Triangle
+
+options:
+  bundleIdPrefix: io.github.marcelbraghetto
+  createIntermediateGroups: true
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+  deploymentTarget:
+    iOS: "9.0"
+
+settings:
+  CLANG_CXX_LANGUAGE_STANDARD: c++17
+  CLANG_CXX_LIBRARY: libc++
+  GCC_C_LANGUAGE_STANDARD: c11
+  CLANG_WARN_DOCUMENTATION_COMMENTS: false
+
+targets:
+  A Simple Triangle:
+    type: application
+    platform: iOS
+    info:
+      path: Generated/Info.plist
+      properties:
+        LSRequiresIPhoneOS: true
+        UIRequiredDeviceCapabilities: [armv7]
+        UIRequiresFullScreen: true
+        UIStatusBarHidden: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UILaunchStoryboardName: LaunchScreen
+    entitlements:
+      path: Generated/app.entitlements
+    sources:
+      - Source
+      - LaunchScreen.storyboard
+    settings:
+      HEADER_SEARCH_PATHS: $(PROJECT_DIR)/../../third-party/SDL/include
+      LIBRARY_SEARCH_PATHS:
+        - $(inherited)
+        - $(PROJECT_DIR)
+        - $(PROJECT_DIR)/Libs
+    dependencies:
+      - sdk: Metal.framework
+      - framework: Libs/libSDL2.a
+        embed: false
+      - sdk: MobileCoreServices.framework
+      - sdk: CoreMotion.framework
+      - sdk: CoreGraphics.framework
+      - sdk: AudioToolbox.framework
+      - sdk: CoreAudio.framework
+      - sdk: QuartzCore.framework
+      - sdk: GameController.framework
+      - sdk: Foundation.framework
+      - sdk: OpenGLES.framework
+      - sdk: UIKit.framework
+      - sdk: AVFoundation.framework
+      - sdk: ImageIO.framework

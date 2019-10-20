@@ -1,0 +1,33 @@
+// Create some global properties to share common build attributes.
+ext.ast = [
+    versionCode: 1,
+    versionName: '1.0',
+    buildToolsVersion: '28.0.3',
+    compileSdkVersion: 28,
+    minSdkVersion: 21,
+    targetSdkVersion: 28,
+    ndkVersion: '20.0.5594570'
+]
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

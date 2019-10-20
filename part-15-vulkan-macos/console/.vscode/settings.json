@@ -1,0 +1,5 @@
+{
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "cmake.generator": "Ninja",
+    "C_Cpp.configurationWarnings": "Disabled"
+}

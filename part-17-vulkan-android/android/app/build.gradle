@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildToolsVersion ast.buildToolsVersion
+    compileSdkVersion ast.compileSdkVersion
+    ndkVersion ast.ndkVersion
+
+    defaultConfig {
+        applicationId "io.github.marcelbraghetto.asimpletriangle"
+        
+        minSdkVersion ast.minSdkVersion
+        targetSdkVersion ast.targetSdkVersion
+        versionCode ast.versionCode
+        versionName ast.versionName
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared", "-DAPP_PLATFORM=android-21"
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation project(':sdl')
+}

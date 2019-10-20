@@ -1,0 +1,4 @@
+build
+jni/SDL
+jni/SDL2_image
+src/main/java/org
