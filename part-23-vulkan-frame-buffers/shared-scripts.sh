@@ -85,11 +85,11 @@ fetch_third_party_lib_tiny_obj_loader() {
 
     pushd ../../third-party
         if [ ! -d "tiny-obj-loader" ]; then
-            echo "Fetching Tiny OBJ Loader from: https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip"
-            wget https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip
-            unzip -q v1.4.1.zip
-            rm v1.4.1.zip
-            mv tinyobjloader-1.4.1 tiny-obj-loader
+            echo "Fetching Tiny OBJ Loader from: https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip"
+            wget https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip
+            unzip -q v2.0-rc1.zip
+            rm v2.0-rc1.zip
+            mv tinyobjloader-2.0-rc1 tiny-obj-loader
         fi
     popd
 }
@@ -99,16 +99,25 @@ fetch_third_party_lib_vulkan_macos() {
 
     pushd ../../third-party
         if [ ! -d "vulkan-mac" ]; then
-            echo "Fetching Vulkan SDK (Mac) from: https://sdk.lunarg.com/sdk/download/1.1.92.1/mac/vulkansdk-macos-1.1.92.1.tar.gz?Human=true"
-            wget --no-cookies https://sdk.lunarg.com/sdk/download/1.1.92.1/mac/vulkansdk-macos-1.1.92.1.tar.gz?Human=true -O vulkan-mac.tar.gz
-            echo "Unzipping Vulkan SDK (Mac) into 'third-party/vulkan-mac' ..."
-            tar -xf vulkan-mac.tar.gz
-            rm vulkan-mac.tar.gz
-            mv vulkansdk-macos-1.1.92.1 vulkan-mac
+            echo "Fetching Vulkan SDK (Mac) from: https://sdk.lunarg.com/sdk/download/1.2.162.1/mac/vulkansdk-macos-1.2.162.1.dmg"
+            wget --no-cookies https://sdk.lunarg.com/sdk/download/1.2.162.1/mac/vulkansdk-macos-1.2.162.1.dmg -O vulkan-mac.dmg
+
+            echo "Mounting DMG file ..."
+            hdiutil attach vulkan-mac.dmg
+			
+            echo "Copying  from DMG file into the current folder..."
+            cp -R /Volumes/vulkansdk-macos-1.2.162.1 .
+			
+            echo "Unmounting DMG file ..."
+            hdiutil detach /Volumes/vulkansdk-macos-1.2.162.1
+
+            mv vulkansdk-macos-1.2.162.1 vulkan-mac
+
+            echo "Deleting DMG file ..."
+            rm vulkan-mac.dmg
         fi
     popd    
 }
-
 # If nothing has created the Frameworks folder yet, then we'll create it.
 verify_frameworks_folder_exists() {
     # Check if the Frameworks folder exists ...

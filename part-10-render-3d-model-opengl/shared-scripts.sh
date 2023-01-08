@@ -70,11 +70,11 @@ fetch_third_party_lib_tiny_obj_loader() {
 
     pushd ../../third-party
         if [ ! -d "tiny-obj-loader" ]; then
-            echo "Fetching Tiny OBJ Loader from: https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip"
-            wget https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip
-            unzip -q v1.4.1.zip
-            rm v1.4.1.zip
-            mv tinyobjloader-1.4.1 tiny-obj-loader
+            echo "Fetching Tiny OBJ Loader from: https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip"
+            wget https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip
+            unzip -q v2.0-rc1.zip
+            rm v2.0-rc1.zip
+            mv tinyobjloader-2.0-rc1 tiny-obj-loader
         fi
     popd
 }

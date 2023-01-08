@@ -70,11 +70,11 @@ fetch_third_party_lib_tiny_obj_loader() {
 
     pushd ../../third-party
         if [ ! -d "tiny-obj-loader" ]; then
-            echo "Fetching Tiny OBJ Loader from: https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip"
-            wget https://github.com/syoyo/tinyobjloader/archive/v1.4.1.zip
-            unzip -q v1.4.1.zip
-            rm v1.4.1.zip
-            mv tinyobjloader-1.4.1 tiny-obj-loader
+            echo "Fetching Tiny OBJ Loader from: https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip"
+            wget https://github.com/tinyobjloader/tinyobjloader/archive/refs/tags/v2.0-rc1.zip
+            unzip -q v2.0-rc1.zip
+            rm v2.0-rc1.zip
+            mv tinyobjloader-2.0-rc1 tiny-obj-loader
         fi
     popd
 }
@@ -99,19 +99,19 @@ fetch_framework_sdl2() {
         if [ ! -d "SDL2.framework" ]; then
             # Download the .dmg file from the SDL2 download site.
             wget https://www.libsdl.org/release/SDL2-2.0.9.dmg
-			
+
             echo "Mounting DMG file ..."
             hdiutil attach SDL2-2.0.9.dmg
-			
+
             echo "Copying SDL2.framework from DMG file into the current folder..."
             cp -R /Volumes/SDL2/SDL2.framework .
-			
+
             echo "Unmounting DMG file ..."
             hdiutil detach /Volumes/SDL2
 
             echo "Deleting DMG file ..."
             rm SDL2-2.0.9.dmg
-			
+
             # Navigate into the SDL2.framework folder.
             pushd SDL2.framework
                 echo "Code signing SDL2.framework ..."
