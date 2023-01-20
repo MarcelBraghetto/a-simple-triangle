@@ -50,7 +50,7 @@ namespace
 
         // Next we need to make sure that the physical device can support a swapchain.
         bool hasSwapchainSupport{false};
-        std::string swapchainName{VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+        auto swapchainName{VK_KHR_SWAPCHAIN_EXTENSION_NAME};
 
         // Traverse all the extensions available in the physical device, looking for the
         // presence of the swapchain extension.
