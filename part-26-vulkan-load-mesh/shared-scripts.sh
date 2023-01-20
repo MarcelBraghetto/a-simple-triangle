@@ -208,7 +208,7 @@ setup_vulkan_libs_macos() {
 
 	pushd "Frameworks"
 		if [ ! -e "libvulkan.1.dylib" ]; then
-			cp ../../../third-party/vulkan-mac/macOS/lib/libvulkan.1.1.92.dylib libvulkan.1.dylib
+			cp ../../../third-party/vulkan-mac/macOS/lib/libvulkan.1.2.162.dylib libvulkan.1.dylib
 		fi
 
 		if [ ! -e "libMoltenVK.dylib" ]; then
